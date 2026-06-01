@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "com.roguzyvorix.joinify.client.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ExampleClientMixin",
+    "PauseScreenMixin",
+    "TitleScreenMixin",
+    "ChatComponentMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

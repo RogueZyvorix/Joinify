@@ -1,0 +1,48 @@
+plugins {
+    // Tetap di-hardcode di sini agar Gradle tidak bingung saat startup
+    id 'fabric-loom' version '1.10-SNAPSHOT'
+    id 'maven-publish'
+}
+
+group = project.maven_group
+version = project.mod_version
+
+repositories {
+    mavenCentral()
+    maven { url = "https://maven.fabricmc.net/" }
+}
+
+loom {
+    // Kita kembalikan ini agar Gradle membaca folder src/client/ kamu
+    splitEnvironmentSourceSets()
+
+    mods {
+        "joinify" {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
+        }
+    }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings loom.officialMojangMappings()
+    
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+}
+
+processResources {
+    def version = project.version
+    inputs.property "version", version
+
+    // Ini tugasnya mengubah tulisan ${version} di fabric.mod.json menjadi angka 1.0.0 otomatis
+    filesMatching("fabric.mod.json") {
+        expand "version": version
+    }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}

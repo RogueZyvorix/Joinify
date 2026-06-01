@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "joinify",
+	"version": "${version}",
+	"name": "Joinify",
+	"description": "Mod ini mempermudah multiplayer untuk minecraft crack",
+	"authors": [
+		"RogueZyvorix"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/joinify/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.roguzyvorix.joinify.Joinify"
+		],
+		"client": [
+			"com.roguzyvorix.joinify.client.JoinifyClient"
+		]
+	},
+	"mixins": [
+		"joinify.mixins.json",
+		{
+			"config": "joinify.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.2",
+		"minecraft": "~1.21.5",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
